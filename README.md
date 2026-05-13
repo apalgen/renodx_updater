@@ -8,7 +8,7 @@
 A lightweight, portable Python watchdog designed to automatically keep RenoDX mods up to date.
 
 > [!IMPORTANT]
-> **Roadmap:** This application is currently optimized specifically for **Crimson Desert**. However, the architecture is designed to be modular. Expanding support for other RenoDX-supported titles is easily achievable and is officially on the project roadmap.
+> **Roadmap:** This application is currently optimized specifically for [**Crimson Desert**](https://store.steampowered.com/app/3321460/Crimson_Desert). However, the architecture is designed to be modular. Expanding support for other RenoDX-supported titles is easily achievable and is officially on the project roadmap.
 
 ---
 
