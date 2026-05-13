@@ -50,15 +50,16 @@ This application is an **Auto-Updater**, not a full installer. It only automates
 ## 📂 Project Structure
 ```text
 renodx_updater/
-├── .vscode/               # Workspace-specific VS Code settings
+├── .vscode/               
+│   ├── extensions.json    # VS Code extension recommendations
+│   └── settings.json      # Workspace formatting rules (Ruff)
 ├── scripts/
 │   └── bundle_project.py  # Utility to bundle project files for review
 ├── .gitignore             # Excludes venv, build artifacts, and cache
 ├── LICENSE                # MIT License
 ├── README.md              # Project documentation
 ├── renodx_updater.py      # Core application source code
-├── requirements.txt       # Python dependencies with pinned versions
-└── vscode_extensions.txt  # VS Code environment reference
+└── requirements.txt       # Python dependencies with pinned versions
 ```
 
 ---

@@ -1,7 +1,10 @@
 {
-    "python.formatting.provider": "black",
-    "editor.formatOnSave": true,
-    "ruff.enable": true,
-    "ruff.fixOnSave": true,
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.ruff": "explicit"
+    },
     "files.insertFinalNewline": true
 }
