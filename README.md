@@ -58,7 +58,7 @@ renodx_updater/
 ├── README.md              # Project documentation
 ├── renodx_updater.py      # Core application source code
 ├── requirements.txt       # Python dependencies with pinned versions
-└── vscode_extensions.txt  # Reference list of used VS Code extensions
+└── vscode_extensions.txt  # VS Code environment reference
 ```
 
 ---
