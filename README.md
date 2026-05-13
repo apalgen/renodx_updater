@@ -24,7 +24,7 @@ A lightweight, portable Python watchdog designed to automatically keep RenoDX mo
 4. **Autostart:**
    - Press `Win + R`, type `shell:startup`, and press Enter.
    - Move the downloaded `.exe` into this folder.
-   - **Pro Tip:** Rename the file to `RenoDX-Updater.exe` before you move it to the `shell:startup` folder. This makes future updates easier as you only need to overwrite the existing file. Ensure only **one** updater file is present in this folder.
+   - **Pro Tip:** Rename the file to `RenoDX-Updater.exe` **before** you move it to the `shell:startup` folder. This makes future updates easier as you only need to overwrite the existing file. Ensure only **one** updater file is present in this folder.
 
 ---
 
