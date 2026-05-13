@@ -1,0 +1,525 @@
+=== PROJECT DUMP ===
+Project: renodx_updater
+Root: C:\Users\apalgen\renodx_updater
+Generated: 2026-05-13_17-24-20
+
+
+============================================================
+FILE: .gitignore
+============================================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#   Usually these files are written by a python script from a template
+#   before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+# Pipfile.lock
+
+# UV
+#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+# uv.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+# poetry.lock
+# poetry.toml
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#   pdm recommends including project-wide configuration in pdm.toml, but excluding .pdm-python.
+#   https://pdm-project.org/en/latest/usage/project/#working-with-version-control
+# pdm.lock
+# pdm.toml
+.pdm-python
+.pdm-build/
+
+# pixi
+#   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
+# pixi.lock
+#   Pixi creates a virtual environment in the .pixi directory, just like venv module creates one
+#   in the .venv directory. It is recommended not to include this directory in version control.
+.pixi
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# Redis
+*.rdb
+*.aof
+*.pid
+
+# RabbitMQ
+mnesia/
+rabbitmq/
+rabbitmq-data/
+
+# ActiveMQ
+activemq-data/
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+#   JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#   be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#   and can be added to the global gitignore or merged into this file.  For a more nuclear
+#   option (not recommended) you can uncomment the following to ignore the entire idea folder.
+# .idea/
+
+# Abstra
+#   Abstra is an AI-powered process automation framework.
+#   Ignore directories containing user credentials, local state, and settings.
+#   Learn more at https://abstra.io/docs
+.abstra/
+
+# Visual Studio Code
+#   Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
+#   that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+#   and can be added to the global gitignore or merged into this file. However, if you prefer, 
+#   you could uncomment the following to ignore the entire vscode folder
+# .vscode/
+# Temporary file for partial code execution
+tempCodeRunnerFile.py
+
+# Ruff stuff:
+.ruff_cache/
+
+# PyPI configuration file
+.pypirc
+
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
+
+# Streamlit
+.streamlit/secrets.toml
+
+
+============================================================
+FILE: LICENSE
+============================================================
+MIT License
+
+Copyright (c) 2026 Armin Palgen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+============================================================
+FILE: README.md
+============================================================
+# RenoDX Auto-Updater
+
+A lightweight, portable Python watchdog that automatically updates RenoDX HDR mods in the background. Currently optimized for Crimson Desert, with plans to expand support for additional games.
+
+## Features
+* **Automated Updates:** Checks for the latest RenoDX mod snapshot at regular intervals (default: every 10 minutes) and downloads it automatically.
+* **Smart Steam Path Detection:** Automatically locates the game installation path via the Windows Registry and library folders.
+* **Safe Execution:** Monitors running processes and pauses updates while the game is running to prevent file conflicts and crashes.
+* **System Tray Integration:** Runs silently in the background with a clean, Windows 11-style system tray icon.
+* **Visual Feedback:** The tray icon turns green to indicate that an update has been successfully applied within the last 24 hours.
+
+## Requirements
+* Windows 10/11
+* Python 3.8+ (if running from source)
+
+## Setup for Development
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:apalgen/renodx_updater.git
+   cd renodx_updater
+
+
+============================================================
+FILE: renodx_updater.py
+============================================================
+import os
+import time
+import threading
+import winreg
+import re
+import requests
+import psutil
+import pystray
+from PIL import Image, ImageDraw
+
+# Configuration
+MOD_URL = "https://oopydoopy.github.io/renodx/renodx-crimsondesert.addon64"
+MOD_FILENAME = "renodx-crimsondesert.addon64"
+CHECK_INTERVAL = 600  # 10 minutes in seconds
+GREEN_DURATION = 86400  # 24 hours in seconds
+
+# State variables
+run_flag = True
+icon_state_green = False
+last_update_time = 0
+
+
+def get_steam_game_path():
+    """Attempts to automatically find the Crimson Desert installation path."""
+    try:
+        # Read main Steam path from Registry
+        key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Valve\Steam")
+        steam_path, _ = winreg.QueryValueEx(key, "SteamPath")
+        winreg.CloseKey(key)
+
+        # Check default path
+        default_path = os.path.join(steam_path, "steamapps", "common", "Crimson Desert")
+        if os.path.exists(default_path):
+            return os.path.normpath(os.path.join(default_path, "bin64"))
+
+        # Check libraryfolders.vdf (if the game is installed on another drive)
+        vdf_path = os.path.join(steam_path, "steamapps", "libraryfolders.vdf")
+        if os.path.exists(vdf_path):
+            with open(vdf_path, "r", encoding="utf-8") as f:
+                content = f.read()
+                # Search for all library paths
+                paths = re.findall(r'"path"\s+"([^"]+)"', content)
+                for p in paths:
+                    # Windows paths in VDF might contain double backslashes
+                    clean_path = p.replace(r"\\\\", "\\").replace(r"\\", "\\")
+                    test_path = os.path.join(
+                        clean_path, "steamapps", "common", "Crimson Desert"
+                    )
+                    if os.path.exists(test_path):
+                        return os.path.normpath(os.path.join(test_path, "bin64"))
+    except Exception:
+        pass
+
+    # Last fallback, manually provided path
+    return r"C:\Program Files (x86)\Steam\steamapps\common\Crimson Desert\bin64"
+
+
+def is_game_running():
+    """Checks if the game is currently running."""
+    for proc in psutil.process_iter(["name"]):
+        try:
+            if proc.info["name"] and proc.info["name"].lower() == "crimsondesert.exe":
+                return True
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            pass
+    return False
+
+
+def check_and_update():
+    """
+    Downloads the mod file and compares it.
+    Returns True (update applied), False (no update needed), or None (error / game running).
+    """
+    if is_game_running():
+        return None
+
+    target_dir = get_steam_game_path()
+    if not os.path.exists(target_dir):
+        # Folder does not exist (game might not be installed)
+        return None
+
+    target_file = os.path.join(target_dir, MOD_FILENAME)
+
+    try:
+        req = requests.get(MOD_URL, timeout=15)
+        if req.status_code == 200:
+            new_content = req.content
+
+            # Check if file exists and is identical
+            if os.path.exists(target_file):
+                with open(target_file, "rb") as f:
+                    old_content = f.read()
+                if old_content == new_content:
+                    return False  # Files are identical, no update needed
+
+            # Save/overwrite file
+            with open(target_file, "wb") as f:
+                f.write(new_content)
+            return True  # Successfully updated
+    except Exception:
+        return None
+    return False
+
+
+def create_icon_image(is_green=False):
+    """Generates a simple, Windows 11 matching tray icon."""
+    image = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(image)
+
+    # Color scheme: Win11 Dark Gray for Normal, Green for "Recently updated"
+    color = (46, 204, 113, 255) if is_green else (180, 180, 180, 255)
+
+    # Draws a clean circle (classic indicator)
+    draw.ellipse((8, 8, 56, 56), fill=color)
+    # Small inner hole for a "ring" look
+    draw.ellipse((20, 20, 44, 44), fill=(0, 0, 0, 0))
+
+    return image
+
+
+def set_icon_state(icon, state):
+    global icon_state_green
+    icon_state_green = state
+    icon.icon = create_icon_image(is_green=state)
+
+
+def manual_check(icon, item):
+    """Executed when the user clicks 'Check now' or clicks the icon."""
+    global last_update_time
+    result = check_and_update()
+
+    if result is True:
+        last_update_time = time.time()
+        set_icon_state(icon, True)
+    elif result is False:
+        # On manual check without needed update -> Reset green status
+        set_icon_state(icon, False)
+
+
+def quit_app(icon, item):
+    """Quits the application cleanly."""
+    global run_flag
+    run_flag = False
+    icon.stop()
+
+
+def background_loop(icon):
+    """The main loop that checks every 10 minutes in the background."""
+    global last_update_time
+
+    # Initial check on startup
+    if check_and_update() is True:
+        last_update_time = time.time()
+        set_icon_state(icon, True)
+
+    while run_flag:
+        # Wait in small steps so the app can be quit immediately
+        for _ in range(CHECK_INTERVAL):
+            if not run_flag:
+                break
+            time.sleep(1)
+
+        if not run_flag:
+            break
+
+        result = check_and_update()
+        if result is True:
+            last_update_time = time.time()
+            set_icon_state(icon, True)
+
+        # Check if 24 hours have passed to turn the icon gray again
+        if icon_state_green and (time.time() - last_update_time > GREEN_DURATION):
+            set_icon_state(icon, False)
+
+
+def main():
+    # Create menu
+    menu = pystray.Menu(
+        # default=True triggers this item on double-click (or single click depending on OS)
+        pystray.MenuItem("Check now (Update)", manual_check, default=True),
+        pystray.Menu.SEPARATOR,
+        pystray.MenuItem("Quit", quit_app),
+    )
+
+    # Initialize icon
+    icon = pystray.Icon(
+        "RenoDXUpdater",
+        create_icon_image(icon_state_green),
+        "RenoDX Auto-Updater",
+        menu=menu,
+    )
+
+    # Start background thread
+    bg_thread = threading.Thread(target=background_loop, args=(icon,), daemon=True)
+    bg_thread.start()
+
+    # Start icon (blocks the main thread)
+    icon.run()
+
+
+if __name__ == "__main__":
+    main()
+
+
+============================================================
+FILE: requirements.txt
+============================================================
+altgraph==0.17.5
+certifi==2026.4.22
+charset-normalizer==3.4.7
+idna==3.15
+packaging==26.2
+pefile==2024.8.26
+pillow==12.2.0
+psutil==7.2.2
+pyinstaller==6.20.0
+pyinstaller-hooks-contrib==2026.5
+pystray==0.19.5
+pywin32-ctypes==0.2.3
+requests==2.34.0
+setuptools==82.0.1
+six==1.17.0
+urllib3==2.7.0
+
+
+============================================================
+FILE: vs_code_extensions.txt
+============================================================
+aaron-bond.better-comments@3.0.2
+alexcvzz.vscode-sqlite@0.14.1
+charliermarsh.ruff@2026.40.0
+eamodio.gitlens@17.12.2
+github.vscode-github-actions@0.31.5
+github.vscode-pull-request-github@0.144.0
+mikoz.black-py@1.0.4
+ms-python.debugpy@2026.6.0
+ms-python.python@2026.4.0
+ms-python.vscode-pylance@2026.2.1
+ms-python.vscode-python-envs@1.30.0
+njpwerner.autodocstring@0.6.1
+yzhang.markdown-all-in-one@3.6.3
+
