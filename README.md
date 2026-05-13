@@ -5,7 +5,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Platform](https://img.shields.io/badge/platform-Windows%2011-lightgrey)
 
-A lightweight, portable Python watchdog designed to automatically keep RenoDX mods up to date.
+A lightweight, portable Python watchdog designed to automatically keep [RenoDX](https://github.com/clshortfuse/renodx) mods up to date.
 
 > [!IMPORTANT]
 > **Roadmap:** This application is currently optimized specifically for [**Crimson Desert**](https://store.steampowered.com/app/3321460/Crimson_Desert). However, the architecture is designed to be modular. Expanding support for other RenoDX-supported titles is easily achievable and is officially on the project roadmap.
