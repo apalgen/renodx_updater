@@ -56,7 +56,7 @@ def get_steam_game_path():
 
 
 def is_game_running():
-    """Checks if the game is currently running."""
+    """Checks if the game is currently running to avoid file access conflicts."""
     for proc in psutil.process_iter(["name"]):
         try:
             if proc.info["name"] and proc.info["name"].lower() == "crimsondesert.exe":
@@ -72,12 +72,11 @@ def check_and_update():
     Returns True (update applied), False (no update needed), or None (error / game running).
     """
     if is_game_running():
-        return None
+        return None  # Skip update if game is active
 
     target_dir = get_steam_game_path()
     if not os.path.exists(target_dir):
-        # Folder does not exist (game might not be installed)
-        return None
+        return None  # Game folder not found
 
     target_file = os.path.join(target_dir, MOD_FILENAME)
 
@@ -86,19 +85,19 @@ def check_and_update():
         if req.status_code == 200:
             new_content = req.content
 
-            # Check if file exists and is identical
+            # Check if file exists and content is identical
             if os.path.exists(target_file):
                 with open(target_file, "rb") as f:
                     old_content = f.read()
                 if old_content == new_content:
-                    return False  # Files are identical, no update needed
+                    return False  # No update needed
 
-            # Save/overwrite file
+            # Write new mod file
             with open(target_file, "wb") as f:
                 f.write(new_content)
-            return True  # Successfully updated
+            return True  # Update successful
     except Exception:
-        return None
+        return None  # Network or file system error
     return False
 
 
@@ -110,7 +109,7 @@ def create_icon_image(is_green=False):
     # Color scheme: Win11 Dark Gray for Normal, Green for "Recently updated"
     color = (46, 204, 113, 255) if is_green else (180, 180, 180, 255)
 
-    # Draws a clean circle (classic indicator)
+    # Draws a clean circle
     draw.ellipse((8, 8, 56, 56), fill=color)
     # Small inner hole for a "ring" look
     draw.ellipse((20, 20, 44, 44), fill=(0, 0, 0, 0))
@@ -119,33 +118,67 @@ def create_icon_image(is_green=False):
 
 
 def set_icon_state(icon, state):
+    """Updates the icon color state globally and visually."""
     global icon_state_green
     icon_state_green = state
     icon.icon = create_icon_image(is_green=state)
 
 
+def get_last_update_string():
+    """Returns the formatted timestamp (YYYY-MM-DD HH:MM) of the last update or file modification."""
+    if last_update_time > 0:
+        # Use timestamp from the current session if an update occurred
+        return time.strftime("%Y-%m-%d %H:%M", time.localtime(last_update_time))
+
+    # Fallback: Read the actual file modification time if the app just started
+    target_dir = get_steam_game_path()
+    target_file = os.path.join(target_dir, MOD_FILENAME)
+    if os.path.exists(target_file):
+        mtime = os.path.getmtime(target_file)
+        return time.strftime("%Y-%m-%d %H:%M", time.localtime(mtime))
+
+    return "Unknown"
+
+
 def manual_check(icon, item):
-    """Executed when the user clicks 'Check now' or clicks the icon."""
+    """Executed when the user clicks 'Check now' or left-clicks the icon."""
     global last_update_time
     result = check_and_update()
 
     if result is True:
         last_update_time = time.time()
         set_icon_state(icon, True)
+        time_str = get_last_update_string()
+        # Trigger native Windows notification for a successful update
+        icon.notify(
+            f"Mod successfully updated!\nLast Update: {time_str}", "RenoDX Auto-Updater"
+        )
+
     elif result is False:
-        # On manual check without needed update -> Reset green status
-        set_icon_state(icon, False)
+        set_icon_state(icon, False)  # Reset to gray if already up to date
+        time_str = get_last_update_string()
+        # Trigger native Windows notification stating no update was needed
+        icon.notify(
+            f"No new updates available.\nLast Update: {time_str}", "RenoDX Auto-Updater"
+        )
+
+    elif result is None:
+        # Trigger native Windows warning notification
+        icon.notify(
+            "Update skipped.\nGame is currently running or path not found.",
+            "RenoDX Auto-Updater",
+        )
 
 
 def quit_app(icon, item):
-    """Quits the application cleanly."""
+    """Quits the application cleanly by stopping the background loop."""
     global run_flag
     run_flag = False
     icon.stop()
 
 
 def background_loop(icon):
-    """The main loop that checks every 10 minutes in the background."""
+    """The main loop that checks for updates periodically in the background."""
     global last_update_time
 
     # Initial check on startup
@@ -154,7 +187,7 @@ def background_loop(icon):
         set_icon_state(icon, True)
 
     while run_flag:
-        # Wait in small steps so the app can be quit immediately
+        # Wait in 1-second steps to allow immediate shutdown when quit_app is called
         for _ in range(CHECK_INTERVAL):
             if not run_flag:
                 break
@@ -163,26 +196,27 @@ def background_loop(icon):
         if not run_flag:
             break
 
+        # Periodic update check
         result = check_and_update()
         if result is True:
             last_update_time = time.time()
             set_icon_state(icon, True)
 
-        # Check if 24 hours have passed to turn the icon gray again
+        # Revert icon to gray if the green duration (24h) has passed
         if icon_state_green and (time.time() - last_update_time > GREEN_DURATION):
             set_icon_state(icon, False)
 
 
 def main():
-    # Create menu
+    # Setup context menu for the system tray icon
     menu = pystray.Menu(
-        # default=True triggers this item on double-click (or single click depending on OS)
+        # default=True binds the left-click/double-click action to this item
         pystray.MenuItem("Check now (Update)", manual_check, default=True),
         pystray.Menu.SEPARATOR,
         pystray.MenuItem("Quit", quit_app),
     )
 
-    # Initialize icon
+    # Initialize the system tray icon
     icon = pystray.Icon(
         "RenoDXUpdater",
         create_icon_image(icon_state_green),
@@ -190,11 +224,11 @@ def main():
         menu=menu,
     )
 
-    # Start background thread
+    # Start the periodic background check in a separate daemon thread
     bg_thread = threading.Thread(target=background_loop, args=(icon,), daemon=True)
     bg_thread.start()
 
-    # Start icon (blocks the main thread)
+    # Run the icon event loop (this blocks the main thread)
     icon.run()
 
 

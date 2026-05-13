@@ -13,10 +13,10 @@ SKIP_DIRS = {
     ".venv",
     "venv",
     "__pycache__",
-    ".vscode",
     "build",
     "dist",
     "scripts",  # Ignore the scripts folder itself when bundling
+    "dumps",  # Ignore the new dumps folder
 }
 
 EXTENSIONS = {".py", ".md", ".txt"}
@@ -40,7 +40,13 @@ def bundle_source_files():
     proj_name = root.name
     ts = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     fname = f"{proj_name}_dump_{ts}.txt"
-    out_path = root / fname
+
+    # Create dumps directory if it doesn't exist
+    dumps_dir = root / "dumps"
+    dumps_dir.mkdir(exist_ok=True)
+
+    # Set output path to the dumps directory
+    out_path = dumps_dir / fname
 
     with open(out_path, "w", encoding="utf-8") as out:
         out.write("=== PROJECT DUMP ===\n")
@@ -53,7 +59,7 @@ def bundle_source_files():
             dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
 
             for file in files:
-                # Skip self and previous dumps
+                # Skip self and previous dumps (just in case they are somewhere else)
                 if file == fname or ("_dump_" in file and file.endswith(".txt")):
                     continue
 
