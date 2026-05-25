@@ -33,7 +33,7 @@ A lightweight, portable Python watchdog designed to automatically keep [RenoDX](
 This application is an **Auto-Updater**, not a full installer. It only automates the update process of the `renodx-crimsondesert.addon64` snapshot file.
 
 **You must perform the initial setup manually first:**
-1. Follow the **official instructions** for the RenoDX mod: [Crimson Desert Mod Discussion](https://github.com/clshortfuse/renodx/discussions/535).
+1. Follow the **official instructions** for the RenoDX mod: [Crimson Desert Mod Discussion](https://github.com/clshortfuse/renodx/discussions/535) on Steam.
 2. You **must** have ReShade (with Add-on Support) correctly installed and configured, as RenoDX relies on it.
 3. Once the initial setup is complete and the mod is working, this updater will handle all future updates of the addon file automatically.
 
